@@ -65,19 +65,19 @@ def whois_features(domain):
         if creation:
             if isinstance(creation, list):
                 creation = creation[0]
-            if isinstance(creation, str):
-                try:
-                    #creation = datetime.datetime.fromisoformat(creation)
-                    print(f"Date of creation of {domain} is {creation}")
-                except Exception:
-                    creation = None
+            try:
+                #creation = datetime.datetime.fromisoformat(creation)
+                print(f"Date of creation of {domain} is {creation}")
+            except Exception:
+                creation = None
         if creation:
             #age_days = (datetime.datetime.utcnow() - creation).days
-            age_days = datetime.datetime.date - creation
+            age_days = datetime.datetime.today() - creation
             print(f"total time of creation {age_days}")
         return {"registrar": registrar, "country": country, "age_days": age_days}
     except Exception as e:
         return {"registrar": None, "country": None, "age_days": None, "error": str(e)}
+        
 
 # ---------- SSL features ----------
 def ssl_features(hostname, port=443, timeout=5):
